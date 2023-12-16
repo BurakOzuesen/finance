@@ -1,0 +1,9 @@
+with adx_di
+
+Mean absolute error : 4.597309281069591
+Mean absolute error : 0.026642049536292026
+
+without adx_di
+
+Mean absolute error : 6.073373552352662
+Mean absolute error : 0.035580735005206254

@@ -1,3 +1,10 @@
+yapılacaklar:
 ADX and DI
 Volume Bar Breakout and Breakdown  Indicator
 UT Bot
+farklı ufuk değerleri denenecek
+farklı geçmiş gün sayıları denenecek
+yeni indikatörler eklenecek
+yeni makaleler okunacak
+
+sonuçlar:
