@@ -7,3 +7,10 @@ without adx_di
 
 Mean absolute error : 6.073373552352662
 Mean absolute error : 0.035580735005206254
+
+dataset listesi
+AAPL
+
+metrik listesi
+mae
+mean_absolute_percentage_error

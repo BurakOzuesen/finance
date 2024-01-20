@@ -1,6 +1,7 @@
 Yapılacak Listesi
 
 Zaruri Görevler:
+Model tahmini hep aynı değere yapıyor sebebi tespit edilip düzeltilecek
 deneylerin 10 kez koşturulması sağlanacak başarı ortalama 10 koşumun sonucu esas alınacak
 inverse transform yazılacak
 printler düzenlenecek
@@ -8,6 +9,8 @@ py uzantılı hale getirilecek + indikatör kütüphanesi Yapılacak
 öbür makale okunup papers dizinine eklenecek
 Farklı zaman serileri bulunup deney ortamına entegrasyonları sağlanacak
 Al-Sat simülasyonu oluşturulacak
+Train, Test, Valid setleri oluşturulacak
+EarlyStopping eklenecek
 
 Tek Seferlik Görevler:
 Volume Bar Breakout Indicator eklenecek
@@ -15,6 +18,11 @@ UT Bot eklenecek
 Farklı input, output shape kombinasyonları denenecek
 Farklı time interval ve dataset uzunlukları denenecek
 MLOps için bir sistem ayağa kaldırılacak
+Modeller için save configi yazılacak
+Grafikler için save configi yazılacak
+Adj close değeri kullanılarak bütün veriler adjust edilecek
+Dinamik LR eklenecek
+Train sonrasında bir de finetuning eklenecek
 
 Tekrarlanabilir Görevler:
 yeni indikatörler eklenecek
