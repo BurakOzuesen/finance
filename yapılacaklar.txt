@@ -1,0 +1,25 @@
+Yapılacak Listesi
+
+Zaruri Görevler:
+deneylerin 10 kez koşturulması sağlanacak başarı ortalama 10 koşumun sonucu esas alınacak
+inverse transform yazılacak
+printler düzenlenecek
+py uzantılı hale getirilecek + indikatör kütüphanesi Yapılacak
+öbür makale okunup papers dizinine eklenecek
+Farklı zaman serileri bulunup deney ortamına entegrasyonları sağlanacak
+Al-Sat simülasyonu oluşturulacak
+
+Tek Seferlik Görevler:
+Volume Bar Breakout Indicator eklenecek
+UT Bot eklenecek
+Farklı input, output shape kombinasyonları denenecek
+Farklı time interval ve dataset uzunlukları denenecek
+MLOps için bir sistem ayağa kaldırılacak
+
+Tekrarlanabilir Görevler:
+yeni indikatörler eklenecek
+yeni makaleler okunacak
+yeni datasetler eklenecek
+
+Yapılan İyileştirmeler ve Sonuçları:
+adx_di eklendi %24 loss düşüşü gözlendi
