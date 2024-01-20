@@ -1,6 +1,7 @@
 Yapılacak Listesi
 
 Zaruri Görevler:
+Yön tahmini eklenecek yani yeni metrik olarak binary accuracy bakılacak
 Model tahmini hep aynı değere yapıyor sebebi tespit edilip düzeltilecek
 deneylerin 10 kez koşturulması sağlanacak başarı ortalama 10 koşumun sonucu esas alınacak
 inverse transform yazılacak
@@ -11,10 +12,14 @@ Farklı zaman serileri bulunup deney ortamına entegrasyonları sağlanacak
 Al-Sat simülasyonu oluşturulacak
 Train, Test, Valid setleri oluşturulacak
 EarlyStopping eklenecek
+Yeni hisse eklenecek
+RF Regressor denenecek
 
 Tek Seferlik Görevler:
 Volume Bar Breakout Indicator eklenecek
 UT Bot eklenecek
+Predictionlar arasındaki bağıntıya göre acc hesaplanacak
+Prediction ve gerçek değer arasındaki bağıntıya göre acc hesaplanacak
 Farklı input, output shape kombinasyonları denenecek
 Farklı time interval ve dataset uzunlukları denenecek
 MLOps için bir sistem ayağa kaldırılacak
@@ -23,6 +28,8 @@ Grafikler için save configi yazılacak
 Adj close değeri kullanılarak bütün veriler adjust edilecek
 Dinamik LR eklenecek
 Train sonrasında bir de finetuning eklenecek
+Portfölyo management metodu eklenecek
+1-1 sabit currency eklenecek
 
 Tekrarlanabilir Görevler:
 yeni indikatörler eklenecek
