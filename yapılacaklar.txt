@@ -14,6 +14,7 @@ Train, Test, Valid setleri oluşturulacak
 EarlyStopping eklenecek
 Yeni hisse eklenecek
 RF Regressor denenecek
+load model ve Prediction scripti eklenecek
 
 Tek Seferlik Görevler:
 Volume Bar Breakout Indicator eklenecek
