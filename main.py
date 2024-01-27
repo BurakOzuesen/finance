@@ -161,7 +161,7 @@ def main(args: Namespace):
 
     # AAPL hisse senedi sembolü
     symbol = "AAPL"
-    period = "5y"
+    period = "1y"
     interval = "1d"
 
     data = download_data(symbol, period, interval)
@@ -246,7 +246,7 @@ def main(args: Namespace):
     ])
 
     fit_params = {
-        "epochs": 30,
+        "epochs": 3,
         "batch_size": 1,
         "verbose": 1
     }
@@ -289,7 +289,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    num_experiments = 10
+    num_experiments = 2
 
     # Başka bir dizinde bir klasör oluştur
     output_directory = "experiment_results"
