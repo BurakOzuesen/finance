@@ -247,11 +247,11 @@ def main(args: Namespace):
     # TODO: Dinamik olmalı
     # calculate error 
     # calculate MAE 
-    mae = mae(preds, y_test)
-    print("Mean absolute error : " + str(mae)) 
+    mae_error = mae(preds, y_test)
+    print("Mean absolute error : " + str(mae_error)) 
 
-    mape = mean_absolute_percentage_error(preds, y_test)
-    print("Mean absolute error : " + str(mape)) 
+    mape_eror = mean_absolute_percentage_error(preds, y_test)
+    print("Mean absolute error : " + str(mape_eror)) 
 
 
 if __name__ == "__main__":
@@ -262,4 +262,6 @@ if __name__ == "__main__":
     # target_length = 1
 
     args = parser.parse_args()
-    main(args)
+
+    for exp_id in range(10):
+        main(args)

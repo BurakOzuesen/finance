@@ -15,6 +15,7 @@ EarlyStopping eklenecek
 Yeni hisse eklenecek
 RF Regressor denenecek
 load model ve Prediction scripti eklenecek
+dataset kronolojik olmak zorunda değil
 
 Tek Seferlik Görevler:
 Volume Bar Breakout Indicator eklenecek
