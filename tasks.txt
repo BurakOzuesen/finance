@@ -1,6 +1,7 @@
 Yapılacak Listesi
 
 Zaruri Görevler:
+ReadMe eklenecek
 Yön tahmini eklenecek yani yeni metrik olarak binary accuracy bakılacak
 Model tahmini hep aynı değere yapıyor sebebi tespit edilip düzeltilecek
 inverse transform yazılacak
