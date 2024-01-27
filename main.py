@@ -3,7 +3,7 @@ import argparse
 import yfinance as yf
 import warnings
 from sklearn.preprocessing import MinMaxScaler
-from keras.layers import LSTM, Dropout, Dense
+from keras.layers import LSTM, Dropout, Dense, concatenate
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 import matplotlib.pyplot as plt
 import numpy as np
@@ -40,7 +40,10 @@ def preprocess_data(
         desired_columns:list=None
     ) -> ndarray:
     
-    df['Target'] = df['Close'].shift(-target_length)
+    df['Target_Value'] = df['Close'].shift(-target_length)
+    
+    df["Target_Direction"] = (df['Target_Value'] > df['Close']).astype(int)
+
     df.drop('Adj Close', axis=1, inplace=True)
     df = df.dropna()
 
@@ -186,7 +189,15 @@ def main(args: Namespace):
     print(f"{'*'*(50+len(_temp))}\n")
 
 
-    
+    # Define the first output for the continuous value
+    output_continuous = Dense(1, activation='linear', name='output_continuous')
+
+    # Define the second output for the probability between 0 and 1
+    output_probability = Dense(1, activation='sigmoid', name='output_probability')  
+
+    # Concatenate both outputs
+    outputs = concatenate([output_continuous, output_probability], name='concatenated_outputs')
+
     modeller = CustomModel()
     layers = [
         LSTM(100, input_shape=(
@@ -198,11 +209,12 @@ def main(args: Namespace):
         Dropout(0.2),
         LSTM(100),
         Dropout(0.2),
-        Dense(1)
+        outputs
     ]
-    
+
     params = {
-        "loss": "mae",
+        "loss": {'output_continuous': 'mean_squared_error', 'output_probability': 'binary_crossentropy'},
+        "metrics": {'output_continuous': 'mae', 'output_probability': 'accuracy'},
         "optimizer": "adam"
     }
     # build and compile model
@@ -238,11 +250,11 @@ def main(args: Namespace):
         params= fit_params
     )
 
-    draw_model_history(modeller.get_history())
+    # draw_model_history(modeller.get_history())
 
     preds = modeller.predict(X_test)
 
-    draw_and_save_predictions(preds, ground_truth=y_test)
+    # draw_and_save_predictions(preds, ground_truth=y_test)
 
     # TODO: Dinamik olmalı
     # calculate error 

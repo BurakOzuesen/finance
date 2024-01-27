@@ -35,12 +35,13 @@ class CustomSplitter:
             df: DataFrame, 
             time_steps:int=1
         ) -> Union[ndarray, ndarray]:
+        # TODO: 'Target_Value' ve 'Target_Direction' column ismi dinamik al
     
         X, y = [], []
         for i in range(len(df) - time_steps):
-            a = df.drop(['Target'], axis=1).iloc[i:(i+time_steps), :].values
+            a = df.drop(['Target_Value'], axis=1).iloc[i:(i+time_steps), :].values
             X.append(a)
-            y.append(df.iloc[i, 5])
-        return np.array(X), np.array(y).reshape(-1, 1)
+            y.append([df.iloc[i,5], df.iloc[i,6]])
+        return np.array(X), np.array(y).reshape(-1, 2)
 
 
