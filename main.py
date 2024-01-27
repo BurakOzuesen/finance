@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import mean_absolute_error as mae
 from sklearn.metrics import mean_absolute_percentage_error
-
+import os
+import datetime
 
 # custom libraries
 from scaling.scaler import CustomScaler
@@ -24,6 +25,9 @@ from typing import Optional
 
 input_length = 10
 target_length = 1
+
+mae_errors = []
+mape_errors = []
 
 warnings.filterwarnings('ignore')
 
@@ -137,6 +141,22 @@ def draw_and_save_predictions(
     # Grafik göster
     plt.show()
 
+def run_experiment(exp_id):
+    print(f"Experiment {exp_id + 1}")
+    main(args)
+
+    # main fonksiyonundan global değişkenlere erişelim
+    mae_error = mae_error_global
+    mape_error = mape_error_global
+
+    # Her bir deneyin sonuçlarını logla
+    with open(file_name, "a") as log_file:
+        log_file.write(f"Experiment {exp_id + 1}:\n")
+        log_file.write(f"Mean Absolute Error: {mae_error}\n")
+        log_file.write(f"Mean Absolute Percentage Error: {mape_error}\n")
+        log_file.write("-" * 50 + "\n")
+
+
 def main(args: Namespace):
 
     # AAPL hisse senedi sembolü
@@ -167,12 +187,12 @@ def main(args: Namespace):
 
 
     _temp = "Splitted Shapes"
-    print(f"\n{'*'*25}{_temp}{'*'*25}")
-    print(f"X_train.shape -> {X_train.shape}")
-    print(f"y_train.shape -> {y_train.shape}")
-    print(f"X_test.shape -> {X_test.shape}")
-    print(f"y_test.shape -> {y_test.shape}")
-    print(f"{'*'*(50+len(_temp))}\n")
+    # print(f"\n{'*'*25}{_temp}{'*'*25}")
+    # print(f"X_train.shape -> {X_train.shape}")
+    # print(f"y_train.shape -> {y_train.shape}")
+    # print(f"X_test.shape -> {X_test.shape}")
+    # print(f"y_test.shape -> {y_test.shape}")
+    # print(f"{'*'*(50+len(_temp))}\n")
 
     # reshape for keras
     X_train = X_train.reshape((X_train.shape[0], input_length, X_train.shape[2]))
@@ -180,12 +200,10 @@ def main(args: Namespace):
 
     # Eğitim ve test setlerini göster
     _temp = "After Reshape"
-    print(f"\n{'*'*25}{_temp}{'*'*25}")
-    print("Train set:", X_train.shape, y_train.shape)
-    print("Test set:", X_test.shape, y_test.shape)
-    print(f"{'*'*(50+len(_temp))}\n")
-
-
+    # print(f"\n{'*'*25}{_temp}{'*'*25}")
+    # print("Train set:", X_train.shape, y_train.shape)
+    # print("Test set:", X_test.shape, y_test.shape)
+    # print(f"{'*'*(50+len(_temp))}\n")
     
     modeller = CustomModel()
     layers = [
@@ -210,9 +228,9 @@ def main(args: Namespace):
     
     
     _temp = "Model Summary"
-    print(f"\n{'*'*25}{_temp}{'*'*25}")
-    print(modeller.get_model().summary())
-    print(f"{'*'*(50+len(_temp))}\n")
+    # print(f"\n{'*'*25}{_temp}{'*'*25}")
+    # print(modeller.get_model().summary())
+    # print(f"{'*'*(50+len(_temp))}\n")
 
     checkpoint = ModelCheckpoint(
         'best_model.h5', 
@@ -228,7 +246,7 @@ def main(args: Namespace):
     ])
 
     fit_params = {
-        "epochs": 3,
+        "epochs": 30,
         "batch_size": 1,
         "verbose": 1
     }
@@ -238,11 +256,11 @@ def main(args: Namespace):
         params= fit_params
     )
 
-    draw_model_history(modeller.get_history())
+    # draw_model_history(modeller.get_history())
 
     preds = modeller.predict(X_test)
 
-    draw_and_save_predictions(preds, ground_truth=y_test)
+    # draw_and_save_predictions(preds, ground_truth=y_test)
 
     # TODO: Dinamik olmalı
     # calculate error 
@@ -250,8 +268,16 @@ def main(args: Namespace):
     mae_error = mae(preds, y_test)
     print("Mean absolute error : " + str(mae_error)) 
 
-    mape_eror = mean_absolute_percentage_error(preds, y_test)
-    print("Mean absolute error : " + str(mape_eror)) 
+    mape_error = mean_absolute_percentage_error(preds, y_test)
+    print("Mean absolute Percentage error : " + str(mape_error)) 
+
+    # Bu değerleri fonksiyon dışında kullanabilmek için global değişkenlere atayalım.
+    global mae_error_global, mape_error_global
+    mae_error_global = mae_error
+    mape_error_global = mape_error
+
+    mae_errors.append(mae_error)
+    mape_errors.append(mape_error)
 
 
 if __name__ == "__main__":
@@ -263,5 +289,28 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    for exp_id in range(10):
-        main(args)
+    num_experiments = 10
+
+    # Başka bir dizinde bir klasör oluştur
+    output_directory = "experiment_results"
+    os.makedirs(output_directory, exist_ok=True)
+
+    # Her çalıştırmada farklı bir dosya adı oluştur
+    current_run = 1
+    file_name = os.path.join(output_directory, f"experiment_results_run_{current_run}.txt")
+    while os.path.exists(file_name):
+        current_run += 1
+        file_name = os.path.join(output_directory, f"experiment_results_run_{current_run}.txt")
+
+    for exp_id in range(num_experiments):
+        run_experiment(exp_id)
+
+    # Tüm deneylerin ortalamasını hesapla
+    avg_mae = sum(mae_errors) / num_experiments
+    avg_mape = sum(mape_errors) / num_experiments
+
+   # Ortalamaları aynı dosyaya yazdır
+    with open(file_name, "a") as log_file:
+        log_file.write(f"Average Mean Absolute Error: {avg_mae}\n")
+        log_file.write(f"Average Mean Absolute Percentage Error: {avg_mape}\n")
+        log_file.write("=" * 50 + "\n")

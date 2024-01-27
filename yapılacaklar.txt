@@ -3,7 +3,6 @@ Yapılacak Listesi
 Zaruri Görevler:
 Yön tahmini eklenecek yani yeni metrik olarak binary accuracy bakılacak
 Model tahmini hep aynı değere yapıyor sebebi tespit edilip düzeltilecek
-deneylerin 10 kez koşturulması sağlanacak başarı ortalama 10 koşumun sonucu esas alınacak
 inverse transform yazılacak
 printler düzenlenecek
 py uzantılı hale getirilecek + indikatör kütüphanesi Yapılacak
@@ -16,6 +15,9 @@ Yeni hisse eklenecek
 RF Regressor denenecek
 load model ve Prediction scripti eklenecek
 dataset kronolojik olmak zorunda değil
+Logging İşlemleri: Hata yakalama ve loglama işlemleri için Python'ın logging modülünü kullanmanız daha iyi olabilir. Bu, hata mesajlarını daha kontrol edilebilir ve özelleştirilebilir bir şekilde yönetmenizi sağlar.
+Grafik Çizim Fonksiyonları: draw_model_history ve draw_and_save_predictions fonksiyonları, işlevselliği daha iyi ifade edebilir. Belki de bu fonksiyonları birer sınıf içinde yönetmek daha düzenli bir yaklaşım olabilir.
+Argümanları Değiştirilebilir Yapın: Kodunuzun başında sabit değerler (örneğin, input_length ve target_length) var. Bu değerleri argümanlar aracılığıyla değiştirilebilir yaparsanız, kodunuzu daha esnek hale getirebilir ve farklı senaryolara uyarlanabilir hale getirebilirsiniz.
 
 Tek Seferlik Görevler:
 Volume Bar Breakout Indicator eklenecek
@@ -37,6 +39,3 @@ Tekrarlanabilir Görevler:
 yeni indikatörler eklenecek
 yeni makaleler okunacak
 yeni datasetler eklenecek
-
-Yapılan İyileştirmeler ve Sonuçları:
-adx_di eklendi %24 loss düşüşü gözlendi

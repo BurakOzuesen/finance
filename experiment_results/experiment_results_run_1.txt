@@ -1,0 +1,11 @@
+Experiment 1:
+Mean Absolute Error: 0.15513166168107007
+Mean Absolute Percentage Error: 0.2176748570404353
+--------------------------------------------------
+Experiment 2:
+Mean Absolute Error: 0.08808889676157858
+Mean Absolute Percentage Error: 0.11093378037243665
+--------------------------------------------------
+Average Mean Absolute Error: 0.12161027922132432
+Average Mean Absolute Percentage Error: 0.16430431870643597
+==================================================
