@@ -24,7 +24,7 @@ class CustomModel:
         params: dict
     ) -> None:
         self.model = Sequential(layers)
-        self.model.compile(loss=params['loss'], optimizer=params['optimizer'])
+        self.model.compile(loss=params['loss'], optimizer=params['optimizer'], metrics=params["metrics"])
 
 
     def set_callbacks(
