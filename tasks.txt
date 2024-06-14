@@ -3,14 +3,12 @@ Yapılacak Listesi
 Zaruri Görevler:
 ReadMe eklenecek
 Yön tahmini eklenecek yani yeni metrik olarak binary accuracy bakılacak
-Model tahmini hep aynı değere yapıyor sebebi tespit edilip düzeltilecek
 inverse transform yazılacak
 printler düzenlenecek
 py uzantılı hale getirilecek + indikatör kütüphanesi Yapılacak
 öbür makale okunup papers dizinine eklenecek
 Farklı zaman serileri bulunup deney ortamına entegrasyonları sağlanacak
 Al-Sat simülasyonu oluşturulacak
-Train, Test, Valid setleri oluşturulacak
 EarlyStopping eklenecek
 Yeni hisse eklenecek
 RF Regressor denenecek

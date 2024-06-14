@@ -11,6 +11,7 @@ from sklearn.metrics import mean_absolute_error as mae
 from sklearn.metrics import mean_absolute_percentage_error
 import os
 import datetime
+import pandas as pd
 
 # custom libraries
 from scaling.scaler import CustomScaler
@@ -24,7 +25,7 @@ from numpy import ndarray
 from typing import Optional
 
 input_length = 10
-target_length = 1
+target_length = 10
 
 mae_errors = []
 mape_errors = []
@@ -160,12 +161,13 @@ def run_experiment(exp_id):
 def main(args: Namespace):
 
     # AAPL hisse senedi sembolü
-    symbol = "AAPL"
-    period = "1y"
-    interval = "1d"
+    # symbol = "AAPL"
+    # period = "1y"
+    # interval = "1d"
 
-    data = download_data(symbol, period, interval)
+    # data = download_data(symbol, period, interval)
 
+    data = pd.read_csv("./stock_data/5m/original/ISCTR.IS_5m_original.csv", index_col=0)
     # TODO: not implemented in ipynb, discussable 
     # desired_columns = ['Open', 'High', 'Low', 'Close', 'Volume', 'DIPlus', 'DIMinus', 'ADX']
 
@@ -247,7 +249,7 @@ def main(args: Namespace):
 
     fit_params = {
         "epochs": 3,
-        "batch_size": 1,
+        "batch_size": 64,
         "verbose": 1
     }
     modeller.fit(
