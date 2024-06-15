@@ -17,7 +17,10 @@ dataset kronolojik olmak zorunda değil
 Logging İşlemleri: Hata yakalama ve loglama işlemleri için Python'ın logging modülünü kullanmanız daha iyi olabilir. Bu, hata mesajlarını daha kontrol edilebilir ve özelleştirilebilir bir şekilde yönetmenizi sağlar.
 Grafik Çizim Fonksiyonları: draw_model_history ve draw_and_save_predictions fonksiyonları, işlevselliği daha iyi ifade edebilir. Belki de bu fonksiyonları birer sınıf içinde yönetmek daha düzenli bir yaklaşım olabilir.
 Argümanları Değiştirilebilir Yapın: Kodunuzun başında sabit değerler (örneğin, input_length ve target_length) var. Bu değerleri argümanlar aracılığıyla değiştirilebilir yaparsanız, kodunuzu daha esnek hale getirebilir ve farklı senaryolara uyarlanabilir hale getirebilirsiniz.
-Grafikler experiment resultlarla birlikte kaydedilecek böylelikle versiyonlamak daha kolay olacak
+Train, test, validation setleri oluşturuluyor ancak kodda original data split ediliyor. Bunun yerine dosyadan okunacak
+Grafikler average halde de kaydedilmedi sadece metrikler değil
+Grafiklerle birlikte deneyin datetime değeri de kaydedilmeli
+Bütün deneyler için hiperparametreler config dosyasından okunacak
 
 Tek Seferlik Görevler:
 Volume Bar Breakout Indicator eklenecek
