@@ -37,8 +37,11 @@ Dinamik LR eklenecek
 Train sonrasında bir de finetuning eklenecek
 Portfölyo management metodu eklenecek
 1-1 sabit currency eklenecek
+Bütün kodun ve projenin diline karar verelim
+Bütün fonksiyonlara docstring yazılsın
 
 Tekrarlanabilir Görevler:
 yeni indikatörler eklenecek
 yeni makaleler okunacak
-yeni datasetler eklenecek
+yeni datasetler eklenecek0
+ChatGPT'ye bu kodda neler geliştirilebilir diye sorulabilir.
