@@ -11,7 +11,6 @@ Farklı zaman serileri bulunup deney ortamına entegrasyonları sağlanacak
 Al-Sat simülasyonu oluşturulacak
 EarlyStopping eklenecek
 Yeni hisse eklenecek
-RF Regressor denenecek
 load model ve Prediction scripti eklenecek
 dataset kronolojik olmak zorunda değil
 Logging İşlemleri: Hata yakalama ve loglama işlemleri için Python'ın logging modülünü kullanmanız daha iyi olabilir. Bu, hata mesajlarını daha kontrol edilebilir ve özelleştirilebilir bir şekilde yönetmenizi sağlar.
