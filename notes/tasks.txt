@@ -38,6 +38,8 @@ Portfölyo management metodu eklenecek
 1-1 sabit currency eklenecek
 Bütün kodun ve projenin diline karar verelim
 Bütün fonksiyonlara docstring yazılsın
+şirket verilerini de sütun olarak ekleyelim
+screener kısmına indikatörler eklenecek
 
 Tekrarlanabilir Görevler:
 yeni indikatörler eklenecek
