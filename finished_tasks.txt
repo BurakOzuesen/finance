@@ -1,0 +1,3 @@
+The experiments will be run 10 times and the success will be based on the average result of 10 runs.
+
+Yön tahmini eklenecek yani yeni metrik olarak binary accuracy bakılacak(emin olmak için kontrol edilecek, detaylı debug)

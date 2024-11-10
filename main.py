@@ -3,7 +3,7 @@ import argparse
 import yfinance as yf
 import warnings
 from sklearn.preprocessing import MinMaxScaler
-from keras.layers import LSTM, Dropout, Dense
+from keras.layers import LSTM, Dropout, Dense, Input
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 import matplotlib.pyplot as plt
 import numpy as np
@@ -45,7 +45,10 @@ def preprocess_data(
         desired_columns:list=None
     ) -> ndarray:
     
-    df['Target'] = df['Close'].shift(-target_length)
+    df['Target_Value'] = df['Close'].shift(-target_length)
+    
+    df["Target_Direction"] = (df['Target_Value'] > df['Close']).astype(int)
+
     df.drop('Adj Close', axis=1, inplace=True)
     df = df.dropna()
 
@@ -144,7 +147,7 @@ def draw_and_save_predictions(
     plt.close()
 
 
-def run_experiment(exp_id, exp_dir):
+def run_experiment(args, exp_id, exp_dir):
     print(f"Experiment {exp_id + 1}")
     main(args, exp_dir)
 
@@ -205,31 +208,59 @@ def main(args: Namespace, exp_dir: str):
 
     # Eğitim ve test setlerini göster
     _temp = "After Reshape"
-    # print(f"\n{'*'*25}{_temp}{'*'*25}")
-    # print("Train set:", X_train.shape, y_train.shape)
-    # print("Test set:", X_test.shape, y_test.shape)
-    # print(f"{'*'*(50+len(_temp))}\n")
-    
+    print(f"\n{'*'*25}{_temp}{'*'*25}")
+    print("Train set:", X_train.shape, y_train.shape)
+    print("Test set:", X_test.shape, y_test.shape)
+    print(f"{'*'*(50+len(_temp))}\n")
+
+
     modeller = CustomModel()
-    layers = [
-        LSTM(100, input_shape=(
-            X_train.shape[1], 
+
+    inputs = Input(
+        shape=(
+            X_train.shape[1],
             X_train.shape[2]), 
-            return_sequences=True),
+            name='input_layer'
+    )
+    layers = [
+        LSTM(100,return_sequences=True),
         Dropout(0.2),
         LSTM(100, return_sequences=True),
         Dropout(0.2),
         LSTM(100),
-        Dropout(0.2),
-        Dense(1)
+        Dropout(0.2)
     ]
+    continous_layer_string = "output_continuous"
+    binary_layer_string = "output_probability"
+    params = {
+        "loss": {
+            continous_layer_string: 'mean_squared_error', 
+            binary_layer_string: 'binary_crossentropy'
+        },
+        "metrics": {
+            continous_layer_string: ['mae'], 
+            binary_layer_string: ['accuracy']
+        },
+        "optimizer": "adam"
+    }
+    modeller.build_custom_model(
+            inputs=inputs,
+            output_layers=[
+                Dense(1, activation='linear', name=continous_layer_string),
+                Dense(2, activation='softmax', name=binary_layer_string)  
+            ],
+            layers=layers,
+            params=params
+        )
     
+    """
     params = {
         "loss": "mae",
         "optimizer": "adam"
     }
+    """
     # build and compile model
-    modeller.build_sequential_model(layers, params)
+    # modeller.build_sequential_model(layers, params)
     
     
     _temp = "Model Summary"
@@ -274,11 +305,15 @@ def main(args: Namespace, exp_dir: str):
 
     # calculate error 
     # calculate MAE 
-    mae_error = mae(preds, y_test)
+    preds_cont, preds_prob = preds
+    mae_error = mae(preds_cont, y_test[:,0])
     print("Mean absolute error : " + str(mae_error)) 
 
-    mape_error = mean_absolute_percentage_error(preds, y_test)
+    mape_error = mean_absolute_percentage_error(preds_cont, y_test[:,0])
     print("Mean absolute Percentage error : " + str(mape_error)) 
+    
+    acc = np.mean(np.argmax(preds_prob, axis=1) == y_test[:, 1])
+    print(acc)
 
     # Bu değerleri fonksiyon dışında kullanabilmek için global değişkenlere atayalım.
     global mae_error_global, mape_error_global
@@ -298,7 +333,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    num_experiments = 2
+    num_experiments = 1
 
     # Ana klasörü oluştur
     output_directory = "experiment_results"
@@ -320,7 +355,7 @@ if __name__ == "__main__":
         os.makedirs(exp_dir)
         mae_errors = []
         mape_errors = []
-        run_experiment(exp_id, exp_dir)
+        run_experiment(args, exp_id, exp_dir)
         all_mae_errors.append(mae_errors)
         all_mape_errors.append(mape_errors)
 
