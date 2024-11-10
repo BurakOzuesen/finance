@@ -11,6 +11,7 @@ from sklearn.metrics import mean_absolute_error as mae
 from sklearn.metrics import mean_absolute_percentage_error
 import os
 import datetime
+import pandas as pd
 
 # custom libraries
 from scaling.scaler import CustomScaler
@@ -24,7 +25,7 @@ from numpy import ndarray
 from typing import Optional
 
 input_length = 10
-target_length = 1
+target_length = 10
 
 mae_errors = []
 mape_errors = []
@@ -108,18 +109,21 @@ def calculate_adx_di(
 
 
 def draw_model_history(
-        model_history:dict
+        model_history: dict,
+        file_path: str
     ) -> None:
     plt.plot(model_history.history['loss'], label='Training Loss')
     plt.plot(model_history.history['val_loss'], label='Validation Loss')
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.legend()
-    plt.show()
+    plt.savefig(file_path)
+    plt.close()
 
 def draw_and_save_predictions(
         preds: ndarray,
-        ground_truth: ndarray
+        ground_truth: ndarray,
+        file_path: str
     ) -> None:
     x_values = np.arange(len(preds))
 
@@ -139,36 +143,37 @@ def draw_and_save_predictions(
     # İlgili yeri göster
     plt.legend()
 
-    plt.savefig('example_plot.png')
+    plt.savefig(file_path)
+    plt.close()
 
-    # Grafik göster
-    plt.show()
 
-def run_experiment(exp_id, args, file_name):
+def run_experiment(args, exp_id, exp_dir):
     print(f"Experiment {exp_id + 1}")
-    main(args)
+    main(args, exp_dir)
 
     # main fonksiyonundan global değişkenlere erişelim
     mae_error = mae_error_global
     mape_error = mape_error_global
 
     # Her bir deneyin sonuçlarını logla
-    with open(file_name, "a") as log_file:
+    log_file_path = os.path.join(exp_dir, "experiment_results.txt")
+    with open(log_file_path, "a") as log_file:
         log_file.write(f"Experiment {exp_id + 1}:\n")
         log_file.write(f"Mean Absolute Error: {mae_error}\n")
         log_file.write(f"Mean Absolute Percentage Error: {mape_error}\n")
         log_file.write("-" * 50 + "\n")
 
 
-def main(args: Namespace):
+def main(args: Namespace, exp_dir: str):
 
     # AAPL hisse senedi sembolü
-    symbol = "AAPL"
-    period = "1y"
-    interval = "1d"
+    # symbol = "AAPL"
+    # period = "1y"
+    # interval = "1d"
 
-    data = download_data(symbol, period, interval)
+    # data = download_data(symbol, period, interval)
 
+    data = pd.read_csv("./stock_data/5m/original/ISCTR.IS_5m_original.csv", index_col=0)
     # TODO: not implemented in ipynb, discussable 
     # desired_columns = ['Open', 'High', 'Low', 'Close', 'Volume', 'DIPlus', 'DIMinus', 'ADX']
 
@@ -278,7 +283,7 @@ def main(args: Namespace):
 
     fit_params = {
         "epochs": 3,
-        "batch_size": 1,
+        "batch_size": 32,
         "verbose": 1
     }
     modeller.fit(
@@ -287,14 +292,17 @@ def main(args: Namespace):
         params= fit_params
     )
 
-    # draw_model_history(modeller.get_history())
+    # Model geçmişini çiz ve kaydet
+    history_file_path = os.path.join(exp_dir, "history.png")
+    draw_model_history(modeller.get_history(), history_file_path)
 
     preds = modeller.predict(X_test)
 
 
-    # draw_and_save_predictions(preds, ground_truth=y_test)
+    # Tahminleri çiz ve kaydet
+    predictions_file_path = os.path.join(exp_dir, "predictions.png")
+    draw_and_save_predictions(preds, ground_truth=y_test, file_path=predictions_file_path)
 
-    # TODO: Dinamik olmalı
     # calculate error 
     # calculate MAE 
     preds_cont, preds_prob = preds
@@ -327,26 +335,43 @@ if __name__ == "__main__":
 
     num_experiments = 1
 
-    # Başka bir dizinde bir klasör oluştur
+    # Ana klasörü oluştur
     output_directory = "experiment_results"
     os.makedirs(output_directory, exist_ok=True)
 
     # Her çalıştırmada farklı bir dosya adı oluştur
     current_run = 1
-    file_name = os.path.join(output_directory, f"experiment_results_run_{current_run}.txt")
-    while os.path.exists(file_name):
+    base_dir = os.path.join(output_directory, f"run_{current_run}")
+    while os.path.exists(base_dir):
         current_run += 1
-        file_name = os.path.join(output_directory, f"experiment_results_run_{current_run}.txt")
+        base_dir = os.path.join(output_directory, f"run_{current_run}")
+    os.makedirs(base_dir)
+
+    all_mae_errors = []
+    all_mape_errors = []
 
     for exp_id in range(num_experiments):
-        run_experiment(exp_id, args, file_name)
+        exp_dir = os.path.join(base_dir, f"experiment_{exp_id+1}")
+        os.makedirs(exp_dir)
+        mae_errors = []
+        mape_errors = []
+        run_experiment(args, exp_id, exp_dir)
+        all_mae_errors.append(mae_errors)
+        all_mape_errors.append(mape_errors)
 
     # Tüm deneylerin ortalamasını hesapla
-    avg_mae = sum(mae_errors) / num_experiments
-    avg_mape = sum(mape_errors) / num_experiments
+    avg_mae = sum([sum(errors) for errors in all_mae_errors]) / (num_experiments * len(all_mae_errors[0]))
+    avg_mape = sum([sum(errors) for errors in all_mape_errors]) / (num_experiments * len(all_mape_errors[0]))
 
-   # Ortalamaları aynı dosyaya yazdır
-    with open(file_name, "a") as log_file:
+    # Ortalamaları aynı dosyaya yazdır
+    log_file_path = os.path.join(base_dir, "average_results.txt")
+    with open(log_file_path, "a") as log_file:
         log_file.write(f"Average Mean Absolute Error: {avg_mae}\n")
         log_file.write(f"Average Mean Absolute Percentage Error: {avg_mape}\n")
         log_file.write("=" * 50 + "\n")
+        log_file.write("Experiment Results:\n")
+        for i, (mae_errors, mape_errors) in enumerate(zip(all_mae_errors, all_mape_errors), start=1):
+            log_file.write(f"Experiment {i}:\n")
+            log_file.write(f"Mean Absolute Error: {sum(mae_errors) / len(mae_errors)}\n")
+            log_file.write(f"Mean Absolute Percentage Error: {sum(mape_errors) / len(mape_errors)}\n")
+            log_file.write("-" * 50 + "\n")

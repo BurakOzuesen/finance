@@ -1,7 +1,8 @@
 /*.h5
 /*.png
-
+/experiment_results/
 
 /venv
 
 **/__pycache__/
+/stock_data/*/*.csv
