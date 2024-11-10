@@ -3,7 +3,7 @@ import argparse
 import yfinance as yf
 import warnings
 from sklearn.preprocessing import MinMaxScaler
-from keras.layers import LSTM, Dropout, Dense, concatenate
+from keras.layers import LSTM, Dropout, Dense, Input
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 import matplotlib.pyplot as plt
 import numpy as np
@@ -144,7 +144,7 @@ def draw_and_save_predictions(
     # Grafik göster
     plt.show()
 
-def run_experiment(exp_id):
+def run_experiment(exp_id, args, file_name):
     print(f"Experiment {exp_id + 1}")
     main(args)
 
@@ -209,36 +209,53 @@ def main(args: Namespace):
     print(f"{'*'*(50+len(_temp))}\n")
 
 
-    # Define the first output for the continuous value
-    output_continuous = Dense(1, activation='linear', name='output_continuous')
-
-    # Define the second output for the probability between 0 and 1
-    output_probability = Dense(1, activation='sigmoid', name='output_probability')  
-
-    # Concatenate both outputs
-    outputs = concatenate([output_continuous, output_probability], name='concatenated_outputs')
-
     modeller = CustomModel()
-    layers = [
-        LSTM(100, input_shape=(
-            X_train.shape[1], 
+
+    inputs = Input(
+        shape=(
+            X_train.shape[1],
             X_train.shape[2]), 
-            return_sequences=True),
+            name='input_layer'
+    )
+    layers = [
+        LSTM(100,return_sequences=True),
         Dropout(0.2),
         LSTM(100, return_sequences=True),
         Dropout(0.2),
         LSTM(100),
-        Dropout(0.2),
-        outputs
+        Dropout(0.2)
     ]
-
+    continous_layer_string = "output_continuous"
+    binary_layer_string = "output_probability"
     params = {
-        "loss": {'output_continuous': 'mean_squared_error', 'output_probability': 'binary_crossentropy'},
-        "metrics": {'output_continuous': 'mae', 'output_probability': 'accuracy'},
+        "loss": {
+            continous_layer_string: 'mean_squared_error', 
+            binary_layer_string: 'binary_crossentropy'
+        },
+        "metrics": {
+            continous_layer_string: ['mae'], 
+            binary_layer_string: ['accuracy']
+        },
         "optimizer": "adam"
     }
+    modeller.build_custom_model(
+            inputs=inputs,
+            output_layers=[
+                Dense(1, activation='linear', name=continous_layer_string),
+                Dense(2, activation='softmax', name=binary_layer_string)  
+            ],
+            layers=layers,
+            params=params
+        )
+    
+    """
+    params = {
+        "loss": "mae",
+        "optimizer": "adam"
+    }
+    """
     # build and compile model
-    modeller.build_sequential_model(layers, params)
+    # modeller.build_sequential_model(layers, params)
     
     
     _temp = "Model Summary"
@@ -274,16 +291,21 @@ def main(args: Namespace):
 
     preds = modeller.predict(X_test)
 
+
     # draw_and_save_predictions(preds, ground_truth=y_test)
 
     # TODO: Dinamik olmalı
     # calculate error 
     # calculate MAE 
-    mae_error = mae(preds, y_test)
+    preds_cont, preds_prob = preds
+    mae_error = mae(preds_cont, y_test[:,0])
     print("Mean absolute error : " + str(mae_error)) 
 
-    mape_error = mean_absolute_percentage_error(preds, y_test)
+    mape_error = mean_absolute_percentage_error(preds_cont, y_test[:,0])
     print("Mean absolute Percentage error : " + str(mape_error)) 
+    
+    acc = np.mean(np.argmax(preds_prob, axis=1) == y_test[:, 1])
+    print(acc)
 
     # Bu değerleri fonksiyon dışında kullanabilmek için global değişkenlere atayalım.
     global mae_error_global, mape_error_global
@@ -303,7 +325,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    num_experiments = 2
+    num_experiments = 1
 
     # Başka bir dizinde bir klasör oluştur
     output_directory = "experiment_results"
@@ -317,7 +339,7 @@ if __name__ == "__main__":
         file_name = os.path.join(output_directory, f"experiment_results_run_{current_run}.txt")
 
     for exp_id in range(num_experiments):
-        run_experiment(exp_id)
+        run_experiment(exp_id, args, file_name)
 
     # Tüm deneylerin ortalamasını hesapla
     avg_mae = sum(mae_errors) / num_experiments

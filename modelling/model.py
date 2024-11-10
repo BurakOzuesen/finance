@@ -1,11 +1,16 @@
 
 # libraries
 from keras import Sequential
+from keras.models import Model
+
+# custom libraries
+from utils import apply_functions_consecutively
 
 # types
 from pandas import DataFrame
 from typing import List
 from numpy import ndarray
+from keras.layers import Dense, concatenate, Input
 
 
 # TODO: Dynamic type handling must be added!
@@ -25,6 +30,33 @@ class CustomModel:
     ) -> None:
         self.model = Sequential(layers)
         self.model.compile(loss=params['loss'], optimizer=params['optimizer'], metrics=params["metrics"])
+
+    def build_custom_model(
+            self, 
+            inputs: Input,
+            output_layers: List[Dense],
+            layers: list,
+            params: dict
+            
+    ) -> None:
+        out_cont, out_prob  = output_layers
+        # concatenate([output_continuous, output_probability], name='concatenated_outputs')
+        
+        shared_output = apply_functions_consecutively(inputs, layers)
+        
+        # continous
+        output_continuous = out_cont(shared_output)
+        # binary
+        output_probability = out_prob(shared_output)
+
+        # outputs = concatenate()
+
+        self.model = Model(inputs=inputs, outputs=[output_continuous, output_probability])
+        self.model.compile(
+            loss=params['loss'], 
+            optimizer=params['optimizer'], 
+            metrics=params["metrics"])
+        
 
 
     def set_callbacks(
