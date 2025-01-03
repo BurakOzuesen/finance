@@ -1,0 +1,157 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.3">
+  <diagram name="Sayfa -1" id="r75LU3kL0TUORkjahN-T">
+    <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KyWWYSSTd58YS8akeymB-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-1" target="KyWWYSSTd58YS8akeymB-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-1" target="KyWWYSSTd58YS8akeymB-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-1" value="Dataset" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-2" target="KyWWYSSTd58YS8akeymB-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-2" target="KyWWYSSTd58YS8akeymB-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-2" value="İndikatör Ekleme" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-5" target="KyWWYSSTd58YS8akeymB-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-5" value="&lt;div&gt;Birini Seç&lt;/div&gt;Tekli model&lt;div&gt;Çoklu model&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-7" target="KyWWYSSTd58YS8akeymB-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-7" value="&lt;div&gt;Her İkisini Seç&lt;/div&gt;Period&lt;div&gt;Interval&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-9" target="KyWWYSSTd58YS8akeymB-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-9" value="&lt;div&gt;Her İkisini Seç&lt;/div&gt;Input Length&lt;div&gt;Target Length&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="741" y="241" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-11" value="&lt;div&gt;Adjusted Close Değeri İle Adjust Edecek Miyim?&lt;/div&gt;&lt;div&gt;Evet / Hayır&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="941" y="241" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-14" value="ADX and DI" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-16" target="KyWWYSSTd58YS8akeymB-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-16" target="KyWWYSSTd58YS8akeymB-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-16" value="Scaling" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-18" value="Min Max Scaling yap" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-20" target="KyWWYSSTd58YS8akeymB-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-20" target="KyWWYSSTd58YS8akeymB-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-20" value="Zaman Serisi Halinde Dataset Oluştur&lt;div&gt;(Target ve İnput Length kullan)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-22" value="Train, Valid, Test kümelerini oluştur" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-24" target="KyWWYSSTd58YS8akeymB-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-24" target="KyWWYSSTd58YS8akeymB-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-24" value="Modelleme" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="650" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-26" value="LSTM&lt;div&gt;Random Forest&lt;/div&gt;&lt;div&gt;KNN&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="650" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-28" target="KyWWYSSTd58YS8akeymB-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-28" target="KyWWYSSTd58YS8akeymB-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-28" value="Hiperparametre Optimizasyonu" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-30" target="KyWWYSSTd58YS8akeymB-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-30" value="Derin öğrenme mi?&lt;br&gt;Makine öğrenmesi mi?&lt;div&gt;Karma yöntem mi?&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-32" target="KyWWYSSTd58YS8akeymB-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-32" value="Parametre uzayını tanımla. Hangi parametreler hangi değerleri alabilir not al." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-34" value="Grid Search ya da Random Search ile hiperparametreleri dene" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-36" target="KyWWYSSTd58YS8akeymB-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-36" value="Model Eğitimini Yap" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="870" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-38" target="KyWWYSSTd58YS8akeymB-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-47" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-38" target="KyWWYSSTd58YS8akeymB-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-38" value="Modelden validation ve test kümesinde tahminleri al" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="980" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-42" target="KyWWYSSTd58YS8akeymB-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-42" value="Tahminlere inverse transform gerçekleştir" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="980" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-44" value="Gerçek Değerleri ve Tahmin edilen değerleri görselleştir" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="980" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-46" target="KyWWYSSTd58YS8akeymB-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-46" value="Hata Metriklerini Hesapla" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="1090" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-48" target="KyWWYSSTd58YS8akeymB-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-48" value="Trade Simülasyonu Oluştur" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="1210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KyWWYSSTd58YS8akeymB-50" target="KyWWYSSTd58YS8akeymB-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-50" value="Benchmark belirle" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyWWYSSTd58YS8akeymB-52" value="Simülasyon Sonucunda Elde Edilen Kâr/Zarar Hesapla" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="1210" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

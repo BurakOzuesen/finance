@@ -1,5 +1,0 @@
-The experiments will be run 10 times and the success will be based on the average result of 10 runs.
-Train, Test, Valid sets generator added.
-The issue where the model consistently predicts the same value has been identified and resolved.
-Graphs are being saved along with the experiment results, making versioning easier.
-RF Regressor tried and performs worse.
